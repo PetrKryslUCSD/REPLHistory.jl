@@ -23,12 +23,12 @@ function history(n = 5)
         l = next * l
         if l == "# mode: shell"
             next = ";" 
+        elseif l == "# mode: pkg"
+            next = "]" 
+        elseif l == "# mode: help"
+            next = "?" 
         else
-            printit = false
-            if (l[1] != '#')
-                printit = true
-            end
-            printit && (out = out * l * "\n")
+            (l[1] != '#') && (out = out * l * "\n")
             next = "" 
         end
     end
@@ -36,7 +36,3 @@ function history(n = 5)
 end
 
 end
-
-
-
-# https://github.com/PetrKryslUCSD/REPLHistory.jl.git
