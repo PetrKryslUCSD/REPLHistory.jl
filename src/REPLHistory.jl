@@ -3,9 +3,10 @@ module REPLHistory
 using InteractiveUtils
 using REPL
 
-export @history
+export history
 
-macro history(n) 
+function history(n = 5) 
+    out = ""
     n = n - 1
     list = []; 
     for l in reverse(readlines(REPL.find_hist_file()))[2:end]
@@ -25,18 +26,13 @@ macro history(n)
         else
             printit = false
             if (l[1] != '#')
-                if (length(l) >= 8) 
-                    if (l[1:8] != "@history")
-                        printit = true
-                    end
-                else
-                    printit = true
-                end
+                printit = true
             end
-            printit && println(l)
+            printit && (out = out * l * "\n")
             next = "" 
         end
     end
+    return out
 end
 
 end
