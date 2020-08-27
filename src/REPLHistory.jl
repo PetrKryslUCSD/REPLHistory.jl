@@ -22,11 +22,11 @@ function history(n = 5)
     for l in reverse(list)
         l = next * l
         if l == "# mode: shell"
-            next = ";" 
+            next = "   #;" 
         elseif l == "# mode: pkg"
-            next = "]" 
+            next = "   #]" 
         elseif l == "# mode: help"
-            next = "?" 
+            next = "   #?" 
         else
             (l[1] != '#') && (out = out * l * "\n")
             next = "" 
